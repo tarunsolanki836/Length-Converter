@@ -1,14 +1,16 @@
-
 <div class="layout-row align-items-center justify-content-center mt-50">
 
   <section class="layout-column align-items-center justify-content-between">
     <span class="input layout-row">
         <input type="number" class="large"
-        data-test-id="app-input1"/>
-        <label class="suffix" data-test-id="app-label1"></label>
+               data-test-id="app-input1"
+               [ngModel]="value1"
+               (ngModelChange)="value1 = $event"
+               (keyup)="onValue1Change($event)"/>
+        <label class="suffix" data-test-id="app-label1">{{ getUnitLabel(unit1) }}</label>
     </span>
-    <select data-test-id="app-select1">
-      <option></option>
+    <select data-test-id="app-select1" [(ngModel)]="unit1" (change)="onUnit1Change($event)">
+      <option *ngFor="let option of lengthOptions" [value]="option.id">{{ option.label }}</option>
     </select>
   </section>
 
@@ -17,11 +19,14 @@
   <section class="layout-column align-items-center justify-content-between">
       <span class="input layout-row">
           <input type="number" class="large"
-          data-test-id="app-input2"/>
-          <label class="suffix" data-test-id="app-label2"></label>
+                 data-test-id="app-input2"
+                 [ngModel]="value2"
+                 (ngModelChange)="value2 = $event"
+                 (keyup)="onValue2Change($event)"/>
+          <label class="suffix" data-test-id="app-label2">{{ getUnitLabel(unit2) }}</label>
       </span>
-      <select data-test-id="app-select2">
-        <option></option>
+      <select data-test-id="app-select2" [(ngModel)]="unit2" (change)="onUnit2Change($event)">
+        <option *ngFor="let option of lengthOptions" [value]="option.id">{{ option.label }}</option>
       </select>
-    </section>
+  </section>
 </div>
